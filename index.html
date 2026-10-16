@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Stuff Dev – Self-Healing Enterprise iPaaS</title>
-    <meta name="description" content="Autonom integrationsplattform i Java 21 med automatisk självläkning via GitOps PRs för enterprise-integrationer.">
+    <title>Good Stuff Dev – Intelligent GitOps Remediation Platform</title>
+    <meta name="description" content="Autonom remediation-plattform med en proprietär Context Engine. Fånga fel-loggar, tvätta och filtrera kontexten, och generera verifierade GitOps PRs med tester.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,7 @@
             }
         }
     </script>
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -52,7 +52,7 @@
     <header class="border-b border-dark-border/80 backdrop-blur sticky top-0 z-50 bg-dark-bg/80">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
-    <img src="favicon.ico" alt="Good Stuff Dev" class="w-12 h-12 object-contain" />
+                <img src="favicon.ico" alt="Good Stuff Dev" class="w-12 h-12 object-contain" />
                 <span class="font-bold text-lg tracking-tight text-white">Good Stuff <span class="text-brand-500 font-mono">Dev</span></span>
             </a>
             <div class="flex items-center gap-4">
@@ -70,16 +70,14 @@
             <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-500 text-xs font-mono font-medium mb-8 animate-pulse">
                     <span class="w-2 h-2 rounded-full bg-brand-500"></span>
-                    Build • Test • Heal — Next-Gen Agentic iPaaS
+                    Ingest • Refine • Test • Heal — Deterministic GitOps Remediation
                 </div>
                 <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
-                    Självläkande Enterprise-Integrationer <br class="hidden sm:inline"/>
-                    <span class="bg-gradient-to-r from-brand-500 to-emerald-300 bg-clip-text text-transparent">Utan Licensfällor.</span>
+                    Från Kraschade Loggar Till <br class="hidden sm:inline"/>
+                    <span class="bg-gradient-to-r from-brand-500 to-emerald-300 bg-clip-text text-transparent">Verifierade PRs & Enhetstester.</span>
                 </h1>
                 <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-                    Automatisera er API-drift. Vår plattform fångar kraschade payloads i en 
-                    <span class="text-slate-200 font-medium">Dead Letter Queue (DLQ)</span>, analyserar grundorsaken med autonom AI, och skapar färdiga 
-                    <span class="text-slate-200 font-medium">GitHub Pull Requests</span> för granskning.
+                    Koppla era Git-repositories till era loggkällor. Vår proprietära <span class="text-slate-200 font-medium">Context Engine</span> tvättar bruset, analyserar koden och kör era tester. Saknas test täckning? Då skapas nya enhetstester automatiskt i din PR.
                 </p>
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -101,23 +99,72 @@
                             <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
                             <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
                             <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                            <span class="text-slate-400 text-xs ml-2">runner.py — Agentic Control Plane</span>
+                            <span class="text-slate-400 text-xs ml-2">healing-engine — Context & Remediation Control Plane</span>
                         </div>
-                        <span class="text-slate-500 text-xs"><i class="fa-brands fa-github mr-1"></i> GitOps Loop</span>
+                        <span class="text-slate-500 text-xs"><i class="fa-brands fa-github mr-1"></i> GitOps Remediation</span>
                     </div>
                     <!-- Terminal Body -->
                     <div class="p-5 space-y-3 text-slate-300 overflow-x-auto">
-                        <p class="text-slate-500"># Running Maven test suite on incoming batch integration...</p>
-                        <p><span class="text-brand-500">➜</span> <span class="text-white">./mvnw test -B</span></p>
-                        <p class="text-red-400">[ERROR] OrderPipelineTest.shouldProcessOrder:114 Schema mismatch - expected field 'totals.amount_sek' but received 'totals.amount_cents'</p>
-                        <p class="text-yellow-400"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Routing unprocessable payload to DLQ (target/dlq/failed_payloads.json)</p>
-                        <p class="text-cyan-400">🤖 Invoking Gemini CLI (headless mode) for Root Cause Analysis...</p>
-                        <p class="text-slate-400">   ├─ Analyzing DTO mapping & test failure...</p>
-                        <p class="text-slate-400">   └─ Patching OrderPipeline.java with fallback mapping strategy...</p>
-                        <p class="text-emerald-400 font-semibold">✔ Maven re-test passed! All tests green.</p>
-                        <p class="text-slate-200"><i class="fa-solid fa-code-branch text-brand-500 mr-1"></i> Branch created: <span class="text-brand-500">fix/auto-heal-17128093</span></p>
-                        <p class="text-brand-500 font-semibold">🚀 GitOps PR Ready: Run "gh pr create" to submit for Human-in-the-Loop review.</p>
+                        <p class="text-slate-500"># Ingesting raw error event from log sink...</p>
+                        <p><span class="text-brand-500">➜</span> <span class="text-white">agentic-heal ingest --payload trace_err_98241.json</span></p>
+                        
+                        <p class="text-yellow-400 font-semibold">⚙️ Context Engine Processing:</p>
+                        <p class="text-slate-400">   ├─ Stripping raw framework noise & redacting sensitive payload data...</p>
+                        <p class="text-slate-400">   ├─ Isolating root cause AST frame in repository (payments-service)...</p>
+                        <p class="text-slate-400">   └─ Context optimization complete: 340 log lines reduced to 12 relevant AST nodes.</p>
+
+                        <p class="text-cyan-400">🤖 Invoking Remediation Agent with pruned context...</p>
+                        <p class="text-slate-400">   ├─ Applying fallback patch strategy for schema mismatch...</p>
+                        <p class="text-slate-400">   ├─ No unit test found for target method. Generating unit test suite...</p>
+                        <p class="text-slate-400">   └─ Running native test runner in isolated sandbox container...</p>
+                        
+                        <p class="text-emerald-400 font-semibold">✔ Test suite executed: 1 existing passed, 1 new unit test created & passed!</p>
+                        <p class="text-slate-200"><i class="fa-solid fa-code-branch text-brand-500 mr-1"></i> Branch created: <span class="text-brand-500">fix/auto-heal-schema-mismatch-98241</span></p>
+                        <p class="text-brand-500 font-semibold">🚀 GitOps PR Created: https://github.com/org/payments-service/pull/142 (Includes new tests)</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Breakdown / Workflow Section -->
+        <section class="py-16 border-t border-dark-border/40 bg-slate-950/20">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <h3 class="text-xs font-mono text-brand-500 uppercase tracking-widest mb-10">Arkitekturen: Förädling Före AI-Exekvering</h3>
+                <div class="grid md:grid-cols-4 gap-4 items-stretch">
+                    
+                    <div class="p-4 rounded-xl bg-dark-card border border-dark-border text-left flex flex-col justify-between">
+                        <div>
+                            <div class="text-slate-500 text-xs font-mono mb-2">01. INGESTION</div>
+                            <div class="font-semibold text-white mb-1">Raw Error Event</div>
+                            <div class="text-xs text-slate-400">Fångar obearbetade stack traces och payloads från DLQ, Sentry eller Datadog.</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-dark-card border border-brand-500/40 text-left flex flex-col justify-between relative shadow-lg shadow-brand-500/5">
+                        <span class="absolute -top-2.5 right-3 px-2 py-0.5 rounded bg-brand-500 text-slate-950 text-[10px] font-mono font-bold uppercase">Mellansteget</span>
+                        <div>
+                            <div class="text-brand-500 text-xs font-mono mb-2">02. PROPRIETARY ENGINE</div>
+                            <div class="font-semibold text-white mb-1">Context Refiner</div>
+                            <div class="text-xs text-slate-400">Tvättar brus, maskerar känslig data och plockar ut exakt den kodkontext som behövs.</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-dark-card border border-dark-border text-left flex flex-col justify-between">
+                        <div>
+                            <div class="text-slate-500 text-xs font-mono mb-2">03. AUTOMATED TESTING</div>
+                            <div class="font-semibold text-white mb-1">Test Execution & Creation</div>
+                            <div class="text-xs text-slate-400">Verifierar fixen mot befintliga tester. Saknas tester skapas nya enhetstester automatiskt.</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-dark-card border border-dark-border text-left flex flex-col justify-between">
+                        <div>
+                            <div class="text-slate-500 text-xs font-mono mb-2">04. GITOPS</div>
+                            <div class="font-semibold text-white mb-1">Human-in-the-Loop PR</div>
+                            <div class="text-xs text-slate-400">Skapar en färdig Pull Request med kodändring och nya enhetstester för granskning.</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -126,37 +173,37 @@
         <section id="architecture" class="py-20 border-t border-dark-border/60 bg-slate-950/40">
             <div class="max-w-5xl mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Byggt för utvecklare. Inte för klick-och-drag.</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Ingen "Black Box". Byggt för kontroll och kalkylbarhet.</h2>
                     <p class="text-slate-400 max-w-2xl mx-auto mb-8">
-                        Glöm tröga lågkod-verktyg och skenande token-kostnader.
+                        Vår plattform kombinerar deterministisk logik i mellansteget med autonom kodgenerering.
                     </p>
                     
                     <div class="grid md:grid-cols-3 gap-6 text-left mt-8">
                         <div class="p-5 rounded-xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all">
                             <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center mb-4 text-lg">
-                                <i class="fa-solid fa-bolt"></i>
+                                <i class="fa-solid fa-filter"></i>
                             </div>
-                            <h3 class="font-semibold text-white mb-2">Code-First (Java 21)</h3>
+                            <h3 class="font-semibold text-white mb-2">Precision Context Engine</h3>
                             <p class="text-sm text-slate-400 leading-relaxed">
-                                Full kontroll i er egen CI/CD-pipeline via GitOps. Blixtsnabb prestanda med noll token-kostnad i runtime.
+                                Mellansteget tvättar bort tusentals rader överflödig loggdata och känslig information. Agenten får enbart den exakta kodkontexten som krävs för problemet.
                             </p>
                         </div>
                         <div class="p-5 rounded-xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all">
                             <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center mb-4 text-lg">
-                                <i class="fa-solid fa-shield-halved"></i>
+                                <i class="fa-solid fa-vial-circle-check"></i>
                             </div>
-                            <h3 class="font-semibold text-white mb-2">Agentic Healing</h3>
+                            <h3 class="font-semibold text-white mb-2">Automatisk Testskapande</h3>
                             <p class="text-sm text-slate-400 leading-relaxed">
-                                Kraschade meddelanden fångas i DLQ. AI-motorn analyserar felet och skapar en verifierad PR på under minuten.
+                                Utöver att köra er befintliga testsvit skapar agenten nya enhetstester för den buggfix som genererats (om ramverksstöd finns i repon).
                             </p>
                         </div>
                         <div class="p-5 rounded-xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all">
                             <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center mb-4 text-lg">
                                 <i class="fa-solid fa-code-pull-request"></i>
                             </div>
-                            <h3 class="font-semibold text-white mb-2">Zero Lock-in</h3>
+                            <h3 class="font-semibold text-white mb-2">Universal & Safe GitOps</h3>
                             <p class="text-sm text-slate-400 leading-relaxed">
-                                Er kod, era repositories, er kontroll. Ni har 100% Human-in-the-Loop och godkänner alla kodändringar innan deploy.
+                                Fungerar över alla språk (Node, Python, Go, Java, .NET). Ingenting skickas till produktion utan er godkända Pull Request.
                             </p>
                         </div>
                     </div>
@@ -170,9 +217,9 @@
                 <div class="bg-dark-card border border-dark-border p-8 sm:p-12 rounded-2xl relative overflow-hidden">
                     <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl"></div>
                     
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Minska er API-drifttid med 80%</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Minska er tid på oplanerad felsökning</h2>
                     <p class="text-slate-400 mb-8 text-sm sm:text-base leading-relaxed">
-                        Vi söker 2 pilotföretag för ett 30-dagars Design Partnership. Vi sätter upp ert mest underhållskrävande API-flöde och visar hur det självläker.
+                        Vi söker 2 pilotföretag för ett 30-dagars Design Partnership. Vi kopplar upp er mest kraschbenägna tjänst och visar hur den genererar färdiga PRs med tillhörande tester vid fel.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -195,7 +242,7 @@
         <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
                 <span class="font-bold text-slate-300">Good Stuff Dev</span>
-                <span>— Native Agentic Integration Platform</span>
+                <span>— Deterministic & Agentic Remediation Engine</span>
             </div>
             <div>
                 © 2026 Good Stuff Dev. All rights reserved.
