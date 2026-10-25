@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="sv" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Stuff Dev – Intelligent GitOps Remediation Platform</title>
-    <meta name="description" content="Autonom remediation-plattform med en proprietär Context Engine. Fånga fel-loggar, tvätta och filtrera kontexten, och generera verifierade GitOps PRs med tester.">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Good Stuff Dev | Autonomous Webhook & Integration Healing</title>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,241 +18,910 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            900: '#14532d',
-                        },
-                        dark: {
-                            bg: '#0b0f17',
-                            card: '#111827',
-                            border: '#1f2937',
-                            muted: '#374151'
-                        }
+                        darkBg: '#0B0F17',
+                        cardBg: '#111827',
+                        borderSlate: '#1F2937',
+                        borderHover: '#374151',
+                        emeraldAccent: '#10B981',
+                        emeraldHover: '#059669',
+                        emeraldGlow: 'rgba(16, 185, 129, 0.15)',
                     },
                     fontFamily: {
-                        mono: ['JetBrains Mono', 'Fira Code', 'Monaco', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <!-- Font Awesome Icons & Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
-        .grid-bg {
-            background-image: radial-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px);
-            background-size: 24px 24px;
+        body {
+            background-color: #0B0F17;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Subtle Glow Effects */
+        .emerald-glow {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
+        }
+        
+        .card-glow:hover {
+            box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        /* Custom Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: #1F2937;
+            border-radius: 8px;
+            height: 8px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #10B981;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            transition: all 0.15s ease-in-out;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #34D399;
+        }
+        
+        /* Grid background pattern */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(31, 41, 55, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(31, 41, 55, 0.3) 1px, transparent 1px);
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background-color: #080C14;
+            border: 1px solid #1F2937;
+            border-radius: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
         }
     </style>
 </head>
-<body class="bg-dark-bg text-slate-200 antialiased selection:bg-brand-500 selection:text-slate-950 min-h-screen flex flex-col justify-between">
+<body class="bg-darkBg text-gray-100 antialiased selection:bg-emerald-500 selection:text-black">
 
-    <!-- Header / Nav -->
-    <header class="border-b border-dark-border/80 backdrop-blur sticky top-0 z-50 bg-dark-bg/80">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="favicon.ico" alt="Good Stuff Dev" class="w-12 h-12 object-contain" />
-                <span class="font-bold text-lg tracking-tight text-white">Good Stuff <span class="text-brand-500 font-mono">Dev</span></span>
-            </a>
-            <div class="flex items-center gap-4">
-                <a href="#demo" class="text-xs sm:text-sm px-4 py-2 rounded-lg bg-brand-500 text-slate-950 font-semibold hover:bg-brand-600 transition-colors shadow-lg shadow-brand-500/10">
-                    Boka 15 min Demo
+    <!-- Ambient Gradient Background -->
+    <div class="fixed inset-0 bg-grid-pattern pointer-events-none opacity-60 z-0"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full z-0"></div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+
+        <!-- ================= DYNAMIC HEADER & NAV ================= -->
+        <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 border-b border-borderSlate transition-all duration-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center group-hover:border-emerald-500 transition-colors">
+                        <i class="fa-solid fa-code-merge text-emeraldAccent text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-mono font-bold text-lg tracking-tight text-white group-hover:text-emeraldAccent transition-colors">Good Stuff Dev</span>
+                            <span class="relative flex h-2.5 w-2.5" title="Agent Status: Operational">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                            </span>
+                        </div>
+                        <span class="text-[10px] text-gray-400 font-mono tracking-wider uppercase">goodstuffdev.se</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                    <a href="#how-it-works" class="hover:text-emeraldAccent transition-colors">How it Works</a>
+                    <a href="#architecture" class="hover:text-emeraldAccent transition-colors">Architecture & Security</a>
+                    <a href="#roi-calculator" class="hover:text-emeraldAccent transition-colors">ROI Calculator</a>
+                    <a href="#pricing" class="hover:text-emeraldAccent transition-colors">Pricing</a>
+                    <a href="#faq" class="hover:text-emeraldAccent transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Header Action Buttons -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="mailto:gustav@goodstuffdev.se" class="text-xs font-mono text-gray-400 hover:text-white transition-colors">
+                        Contact Sales
+                    </a>
+                    <a href="#pricing" class="px-5 py-2.5 rounded-lg bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-semibold text-sm transition-all duration-200 emerald-glow flex items-center gap-2">
+                        <span>Start 14-Day Pilot</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Drawer Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-borderSlate px-4 py-6 flex flex-col gap-4 text-center">
+                <a href="#how-it-works" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">How it Works</a>
+                <a href="#architecture" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Architecture & Security</a>
+                <a href="#roi-calculator" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">ROI Calculator</a>
+                <a href="#pricing" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Pricing</a>
+                <a href="#faq" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">FAQ</a>
+                <a href="#pricing" class="mt-2 w-full py-3 rounded-lg bg-emeraldAccent text-slate-950 font-semibold text-sm" onclick="toggleMobileMenu()">
+                    Start 14-Day Pilot
                 </a>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow">
-        <!-- Hero Section -->
-        <section class="relative pt-20 pb-16 md:pt-28 md:pb-24 grid-bg overflow-hidden">
-            <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-500 text-xs font-mono font-medium mb-8 animate-pulse">
-                    <span class="w-2 h-2 rounded-full bg-brand-500"></span>
-                    Ingest • Refine • Test • Heal — Deterministic GitOps Remediation
+        <!-- ================= HERO SECTION ================= -->
+        <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="text-center max-w-4xl mx-auto">
+                
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-medium mb-8">
+                    <i class="fa-solid fa-bolt text-emerald-400"></i>
+                    <span>Autonomous AI Agent for Production Integration Healing</span>
                 </div>
-                <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
-                    Från Kraschade Loggar Till <br class="hidden sm:inline"/>
-                    <span class="bg-gradient-to-r from-brand-500 to-emerald-300 bg-clip-text text-transparent">Verifierade PRs & Enhetstester.</span>
+
+                <!-- Main Headline -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] text-white">
+                    Stop Waking Up to <br class="hidden sm:inline"/>
+                    <span class="bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">Crashed Webhooks</span> & DLQ Backlogs.
                 </h1>
-                <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-                    Koppla era Git-repositories till era loggkällor. Vår proprietära <span class="text-slate-200 font-medium">Context Engine</span> tvättar bruset, analyserar koden och kör era tester. Saknas test täckning? Då skapas nya enhetstester automatiskt i din PR.
+
+                <!-- Subheadline -->
+                <p class="mt-6 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-normal leading-relaxed">
+                    <strong class="text-white font-semibold">Good Stuff Dev</strong> captures Sentry & Datadog error alerts, reproduces bugs inside isolated Docker sandboxes, runs your unit test suite, and submits verified Pull Requests to GitHub/GitLab—<span class="text-emerald-400 underline underline-offset-4 decoration-emerald-500/40">before developers even open their IDE</span>.
                 </p>
 
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#demo" class="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-brand-500 text-slate-950 font-bold hover:bg-brand-600 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        Boka Pilot-demo (15 min)
+                <!-- Dual CTAs -->
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-bold text-base transition-all duration-200 emerald-glow flex items-center justify-center gap-3">
+                        <span>Book 14-Day Free Pilot</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </a>
+                    <button onclick="openDemoModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-cardBg hover:bg-gray-800 border border-borderSlate hover:border-borderHover text-white font-semibold text-base transition-all duration-200 flex items-center justify-center gap-3">
+                        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-play ml-0.5"></i>
+                        </div>
+                        <span>Watch 90s Demo</span>
+                    </button>
+                </div>
+
+                <!-- Trust Badges Strip -->
+                <div class="mt-16 pt-8 border-t border-borderSlate/60 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="flex items-center justify-center gap-2 text-gray-400 font-mono text-xs">
+                        <i class="fa-solid fa-shield-halved text-emeraldAccent"></i>
+                        <span>Zero Infra Friction</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 text-gray-400 font-mono text-xs">
+                        <i class="fa-solid fa-key text-emeraldAccent"></i>
+                        <span>SSH Deploy Keys</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 text-gray-400 font-mono text-xs">
+                        <i class="fa-solid fa-network-wired text-emeraldAccent"></i>
+                        <span>Static IP Whitelisting</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 text-gray-400 font-mono text-xs">
+                        <i class="fa-solid fa-lock text-emeraldAccent"></i>
+                        <span>Enterprise LLM Data Privacy</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SHOWCASE / BEFORE & AFTER TOGGLE ================= -->
+        <section id="how-it-works" class="py-20 bg-cardBg/40 border-y border-borderSlate relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Autonomous Architecture</h2>
+                    <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">How Good Stuff Dev Heals Your Stack</p>
+                    <p class="mt-4 text-gray-400">From incident alert to green pull request in under 120 seconds.</p>
+                </div>
+
+                <!-- Interactive Switcher: Before vs After -->
+                <div class="flex justify-center mb-12">
+                    <div class="p-1.5 rounded-xl bg-darkBg border border-borderSlate inline-flex gap-2">
+                        <button id="btn-after" onclick="switchWorkflow('after')" class="px-6 py-2.5 rounded-lg font-mono text-sm font-semibold transition-all bg-emeraldAccent text-slate-950 shadow-md">
+                            <i class="fa-solid fa-robot mr-2"></i>After (Good Stuff Dev)
+                        </button>
+                        <button id="btn-before" onclick="switchWorkflow('before')" class="px-6 py-2.5 rounded-lg font-mono text-sm font-semibold text-gray-400 hover:text-white transition-all">
+                            <i class="fa-solid fa-user-ninja mr-2"></i>Before (Manual On-Call Nightmare)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Workflow Display Container -->
+                <div id="workflow-container" class="transition-all duration-300">
+                    <!-- AFTER Workflow (Default) -->
+                    <div id="workflow-after" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        
+                        <!-- Step 1 -->
+                        <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono font-bold flex items-center justify-center text-sm">01</span>
+                                    <i class="fa-solid fa-bell-concierge text-gray-500 group-hover:text-emerald-400 transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base mb-2">Incident Captured</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans mb-4">Sentry/Datadog sends an outbound webhook payload for a 500 error or API contract mismatch.</p>
+                            </div>
+                            <div class="p-3 rounded bg-darkBg border border-borderSlate font-mono text-[11px] text-emerald-400 overflow-x-auto">
+                                <span class="text-gray-500">// Trigger payload</span><br>
+                                POST /api/webhooks/sentry<br>
+                                <span class="text-yellow-400">Status: 500 Internal Error</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono font-bold flex items-center justify-center text-sm">02</span>
+                                    <i class="fa-brands fa-docker text-gray-500 group-hover:text-emerald-400 transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base mb-2">Docker Sandbox Isolation</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans mb-4">Agent clones your repo via SSH Deploy Key & reproduces the stacktrace in an ephemeral sandbox.</p>
+                            </div>
+                            <div class="p-3 rounded bg-darkBg border border-borderSlate font-mono text-[11px] text-emerald-400 overflow-x-auto">
+                                <span class="text-gray-500">$ docker run sandbox</span><br>
+                                <span class="text-blue-400">&gt; reproducing crash...</span><br>
+                                <span class="text-red-400">NullPointerException @ line 84</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono font-bold flex items-center justify-center text-sm">03</span>
+                                    <i class="fa-solid fa-brain text-gray-500 group-hover:text-emerald-400 transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base mb-2">Gemini LLM Fix Generation</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans mb-4">Analyzes codebase AST, applies precise patch, and runs unit test suite until green.</p>
+                            </div>
+                            <div class="p-3 rounded bg-darkBg border border-borderSlate font-mono text-[11px] text-emerald-400 overflow-x-auto">
+                                <span class="text-gray-500">// Gemini reasoning</span><br>
+                                <span class="text-emerald-400">&gt; Patch generated</span><br>
+                                <span class="text-emerald-300">&gt; Unit Tests: 48/48 PASSED</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono font-bold flex items-center justify-center text-sm">04</span>
+                                    <i class="fa-solid fa-code-pull-request text-gray-500 group-hover:text-emerald-400 transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base mb-2">Automated PR Opened</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans mb-4">Opens GitHub/GitLab PR with exact root-cause explanation ready for 1-click review.</p>
+                            </div>
+                            <div class="p-3 rounded bg-darkBg border border-borderSlate font-mono text-[11px] text-emerald-400 overflow-x-auto">
+                                <span class="text-gray-500">PR #142 Created</span><br>
+                                <span class="text-white">"fix(webhooks): handle null payload field"</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- BEFORE Workflow (Hidden by default) -->
+                    <div id="workflow-before" class="hidden grid grid-cols-1 md:grid-cols-4 gap-6">
+                        
+                        <div class="code-block p-6 border-red-900/40 bg-red-950/10 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-mono font-bold text-red-400">01. 02:14 AM</span>
+                                <h3 class="font-bold text-white text-base mt-2 mb-2">PagerDuty Alarm Fires</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans">Senior developer wakes up to PagerDuty siren. Integration with third-party logistics API crashed.</p>
+                            </div>
+                            <div class="mt-4 p-2 rounded bg-black/50 border border-red-900/50 font-mono text-[11px] text-red-400">
+                                CRITICAL: DLQ Backlog &gt; 1,500 messages
+                            </div>
+                        </div>
+
+                        <div class="code-block p-6 border-red-900/40 bg-red-950/10 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-mono font-bold text-red-400">02. 02:45 AM</span>
+                                <h3 class="font-bold text-white text-base mt-2 mb-2">Manual Log Digging</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans">Developer opens laptop, sifts through hundreds of Sentry log traces trying to reproduce the payload locally.</p>
+                            </div>
+                            <div class="mt-4 p-2 rounded bg-black/50 border border-red-900/50 font-mono text-[11px] text-red-400">
+                                45 mins wasted finding root cause...
+                            </div>
+                        </div>
+
+                        <div class="code-block p-6 border-red-900/40 bg-red-950/10 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-mono font-bold text-red-400">03. 04:10 AM</span>
+                                <h3 class="font-bold text-white text-base mt-2 mb-2">Manual Hotfix & Tests</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans">Developer writes hotfix under pressure, manually re-runs tests, and hopes nothing else breaks.</p>
+                            </div>
+                            <div class="mt-4 p-2 rounded bg-black/50 border border-red-900/50 font-mono text-[11px] text-red-400">
+                                Exhausted & sleep deprived...
+                            </div>
+                        </div>
+
+                        <div class="code-block p-6 border-red-900/40 bg-red-950/10 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-mono font-bold text-red-400">04. Next Morning</span>
+                                <h3 class="font-bold text-white text-base mt-2 mb-2">Lost Sprint Velocity</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed font-sans">Engineering team spends half the morning reviewing emergency hotfix instead of building core features.</p>
+                            </div>
+                            <div class="mt-4 p-2 rounded bg-black/50 border border-red-900/50 font-mono text-[11px] text-red-400">
+                                Sprint milestone delayed.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= VALUE PROPOSITION GRID ================= -->
+        <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Why Good Stuff Dev</h2>
+                <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Engineered for Zero Friction & Extreme Trust</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
+                            <i class="fa-solid fa-plug-circle-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Zero Infra Friction</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            No heavy agents to install, no complex VPN configs. Connects in under 10 minutes via outbound webhooks and SSH Deploy Keys.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
+                        &gt; 10 min setup time
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
+                            <i class="fa-solid fa-box-archive"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">100% Deterministic</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Fixes are never guessed in the dark. Every single patch is compiled and executed against your real unit test suite in an isolated Docker sandbox.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
+                        &gt; Verified by unit tests
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Enterprise LLM Security</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Powered by Google Gemini Enterprise APIs. Your proprietary codebase and error logs are strictly confidential and NEVER used for model training.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
+                        &gt; Zero model training on data
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
+                            <i class="fa-solid fa-code-commit"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Human-in-the-Loop</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            You stay in total control. The agent opens clean, well-commented Pull Requests with complete root-cause explanations ready for 1-click review.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
+                        &gt; 1-click PR approval
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ARCHITECTURE & SECURITY SECTION ================= -->
+        <section id="architecture" class="py-20 bg-cardBg/30 border-t border-borderSlate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column Info -->
+                    <div class="lg:col-span-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs mb-4">
+                            <i class="fa-solid fa-shield"></i> Enterprise Grade Isolation
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Built for Engineering Teams with Strict Security Standards
+                        </h2>
+                        <p class="mt-4 text-gray-300 leading-relaxed">
+                            We designed Good Stuff Dev so your security officers and IT admins can approve it without friction. No incoming firewall ports, no root server access.
+                        </p>
+
+                        <ul class="mt-8 space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs mt-0.5">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span class="text-sm text-gray-300"><strong class="text-white">SSH Deploy Keys:</strong> Scoped read/write access limited solely to target repositories.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs mt-0.5">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span class="text-sm text-gray-300"><strong class="text-white">Static IP Whitelisting:</strong> All agent outbound traffic comes from dedicated, fixed Hetzner IP addresses.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs mt-0.5">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span class="text-sm text-gray-300"><strong class="text-white">Ephemeral Docker Sandboxes:</strong> Every bug execution runs in a isolated, single-use container destroyed immediately after test execution.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right Column Interactive Terminal -->
+                    <div class="lg:col-span-7">
+                        <div class="code-block overflow-hidden shadow-2xl border border-borderSlate">
+                            <!-- Window Header -->
+                            <div class="px-4 py-3 bg-darkBg border-b border-borderSlate flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                    <span class="ml-2 text-xs font-mono text-gray-400">agent-engine-sandbox.log</span>
+                                </div>
+                                <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Java 21 • Docker Active</span>
+                            </div>
+                            
+                            <!-- Terminal Content -->
+                            <div class="p-5 font-mono text-xs space-y-3 text-gray-300 leading-relaxed overflow-x-auto">
+                                <p class="text-gray-500">[14:22:01.042] INFO  - Webhook received from Sentry (Event ID: #sntry-9042)</p>
+                                <p class="text-gray-300">[14:22:01.110] INFO  - Triggering autonomous remediation workflow for tenant: <span class="text-emerald-400">se-ecommerce-prod</span></p>
+                                <p class="text-blue-400">[14:22:01.405] EXEC  - git clone git@github.com:client/core-api.git --deploy-key=scoped</p>
+                                <p class="text-blue-400">[14:22:02.890] EXEC  - docker run --network=none ephemeral-sandbox-8821</p>
+                                <p class="text-yellow-400">[14:22:04.120] WARN  - Exception reproduced: JsonProperty 'tax_rate' missing in webhook body</p>
+                                <p class="text-purple-400">[14:22:06.500] LLM   - Prompting Gemini Pro Enterprise (Quota bucket: customer-isolated)</p>
+                                <p class="text-emerald-400">[14:22:09.110] FIX   - Generated defensive null-check patch in OrderPayloadHandler.java</p>
+                                <p class="text-blue-400">[14:22:11.840] TEST  - Running `./gradlew test` inside sandbox container...</p>
+                                <p class="text-emerald-400 font-bold">[14:22:18.230] SUCCESS - BUILD SUCCESSFUL in 6s. 112 tests passed, 0 failures.</p>
+                                <p class="text-emerald-300">[14:22:19.001] GIT   - Opened PR #84: "fix(integration): handle missing tax_rate payload gracefully"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= INTERACTIVE ROI CALCULATOR ================= -->
+        <section id="roi-calculator" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-cardBg border border-borderSlate rounded-3xl p-8 sm:p-12 relative overflow-hidden card-glow">
+                
+                <div class="max-w-3xl mb-12">
+                    <span class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Interactive ROI Calculator</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Calculate Your Developer Hours Saved</h2>
+                    <p class="text-gray-400 mt-3">See how much engineering capacity and money your team reclaims every month by eliminating manual webhook and integration debugging.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Sliders Side -->
+                    <div class="lg:col-span-7 space-y-8">
+                        
+                        <!-- Slider 1 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-semibold text-gray-200">Number of Senior Developers</label>
+                                <span id="val-devs" class="font-mono text-emeraldAccent font-bold text-lg">10 devs</span>
+                            </div>
+                            <input type="range" id="input-devs" min="2" max="50" value="10" class="w-full">
+                        </div>
+
+                        <!-- Slider 2 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-semibold text-gray-200">On-Call / Felsökning Hours per Dev / Month</label>
+                                <span id="val-hours" class="font-mono text-emeraldAccent font-bold text-lg">8 hours</span>
+                            </div>
+                            <input type="range" id="input-hours" min="2" max="25" value="8" class="w-full">
+                        </div>
+
+                        <!-- Slider 3 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-semibold text-gray-200">Average Developer Hourly Rate (SEK)</label>
+                                <span id="val-rate" class="font-mono text-emeraldAccent font-bold text-lg">850 SEK/hr</span>
+                            </div>
+                            <input type="range" id="input-rate" min="500" max="1500" step="50" value="850" class="w-full">
+                        </div>
+
+                    </div>
+
+                    <!-- Results Output Side -->
+                    <div class="lg:col-span-5 bg-darkBg border border-borderSlate rounded-2xl p-8 text-center flex flex-col justify-between h-full">
+                        <div>
+                            <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">Estimated Monthly Savings</span>
+                            
+                            <div class="my-6">
+                                <div id="res-hours" class="text-4xl sm:text-5xl font-extrabold text-white font-mono">
+                                    80 hrs
+                                </div>
+                                <div class="text-xs text-emerald-400 font-mono mt-1">Developer time reclaimed / month</div>
+                            </div>
+
+                            <div class="pt-6 border-t border-borderSlate">
+                                <div id="res-money" class="text-3xl sm:text-4xl font-extrabold text-emeraldAccent font-mono">
+                                    68,000 SEK
+                                </div>
+                                <div class="text-xs text-gray-400 mt-1">Monthly cost of wasted debugging time</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-borderSlate/60 bg-emerald-500/5 -mx-8 -mb-8 p-6 rounded-b-2xl">
+                            <div class="flex items-center justify-between text-xs font-mono">
+                                <span class="text-gray-400">Good Stuff Dev Subscription:</span>
+                                <span class="text-white font-bold">24,900 SEK / mo</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs font-mono mt-2">
+                                <span class="text-emerald-400 font-bold">Net Monthly ROI:</span>
+                                <span id="res-roi" class="text-emerald-400 font-bold text-sm">+43,100 SEK / mo</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= PRICING SECTION ================= -->
+        <section id="pricing" class="py-24 bg-cardBg/40 border-t border-borderSlate">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Simple & Transparent</h2>
+                    <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Risk-Free 14-Day Pilot to Standard Tier</p>
+                    <p class="mt-4 text-gray-400">Test Good Stuff Dev on your own repository with clear, agreed-upon Success Criteria before committing a single krona.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    
+                    <!-- Card 1: 14-Day Pilot -->
+                    <div class="bg-cardBg border border-borderSlate rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-emerald-500/40 transition-all card-glow relative">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">14-Day Risk-Free Pilot</h3>
+                                    <p class="text-xs text-gray-400 font-mono mt-1">Evaluation on your live codebase</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">0 SEK</span>
+                            </div>
+
+                            <p class="text-sm text-gray-300 leading-relaxed mb-8">
+                                We set up predefined success criteria (e.g., automated webhook error reproduction + minimum 2 verified PRs). If we don't hit the targets, it costs you 0 SEK.
+                            </p>
+
+                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
+                                    <span>Full autonomous agent access on 1 repo</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
+                                    <span>SSH Deploy Key + Static IP setup (<10 mins)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
+                                    <span>Predefined Success Criteria agreement</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
+                                    <span>Zero commitment if targets aren't met</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="mailto:gustav@goodstuffdev.se?subject=14-Day%20Good%20Stuff%20Dev%20Pilot" class="w-full py-4 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-center text-sm border border-borderSlate transition-all flex items-center justify-center gap-2">
+                            <span>Request Pilot Setup</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 2: Standard Plan (Featured) -->
+                    <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative shadow-2xl emerald-glow">
+                        <div class="absolute -top-4 right-8 bg-emeraldAccent text-slate-950 font-mono text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                            Standard Tier
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-baseline mb-6">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Standard Subscription</h3>
+                                    <p class="text-xs text-gray-400 font-mono mt-1">Flat monthly rate per organization</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-4xl sm:text-5xl font-extrabold text-white font-mono">24,900</span>
+                                    <span class="text-gray-400 font-mono text-sm">SEK / month</span>
+                                </div>
+                                <span class="text-[11px] text-gray-400 font-mono">~€2,200 / month • Billed monthly • Cancel anytime</span>
+                            </div>
+
+                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
+                                    <span><strong>Unlimited</strong> webhook & error incident processing</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
+                                    <span>Dedicated isolated LLM API keys & quotas</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
+                                    <span>Dedicated static IP whitelist for firewalls</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
+                                    <span>Support for Sentry, Datadog, GitHub & GitLab</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
+                                    <span>Direct Slack/Teams channel support with founder</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href="mailto:gustav@goodstuffdev.se?subject=Good%20Stuff%20Dev%20Standard%20Subscription" class="w-full py-4 rounded-xl bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-extrabold text-center text-sm transition-all flex items-center justify-center gap-2">
+                            <span>Get Started Now</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECURITY & FAQ ACCORDION ================= -->
+        <section id="faq" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Security & FAQ</h2>
+                <p class="mt-2 text-3xl font-extrabold text-white">Frequently Asked Questions</p>
+            </div>
+
+            <div class="space-y-4">
+                
+                <!-- Item 1 -->
+                <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq-1')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
+                        <span>How does Good Stuff Dev access our codebase safely?</span>
+                        <i id="icon-faq-1" class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                    </button>
+                    <div id="faq-1" class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed border-t border-borderSlate/50 pt-4">
+                        We use standard GitHub/GitLab <strong>SSH Deploy Keys</strong> scoped specifically to read and open pull requests on target repositories. You never share account passwords or broad organization admin tokens, and you can revoke the deploy key at any moment.
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq-2')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
+                        <span>Is our proprietary source code used to train AI models?</span>
+                        <i id="icon-faq-2" class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                    </button>
+                    <div id="faq-2" class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed border-t border-borderSlate/50 pt-4">
+                        <strong>No, never.</strong> Good Stuff Dev operates strictly through Google Cloud Gemini Enterprise API endpoints under commercial enterprise terms. Under these agreements, input data and codebase context are never stored for model training or shared with third parties.
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq-3')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
+                        <span>What happens if our Git server is behind a firewall?</span>
+                        <i id="icon-faq-3" class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                    </button>
+                    <div id="faq-3" class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed border-t border-borderSlate/50 pt-4">
+                        All outbound requests from Good Stuff Dev originate from dedicated, fixed Hetzner IP addresses. We provide you with our static IP list so your network team can add simple inbound firewall whitelist rules.
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq-4')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
+                        <span>How does the 14-day trial conversion work?</span>
+                        <i id="icon-faq-4" class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                    </button>
+                    <div id="faq-4" class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed border-t border-borderSlate/50 pt-4">
+                        Before starting, we agree on clear Success Criteria (e.g., automated reproduction of 2 live webhook failures). If the agent successfully meets these criteria within 14 days, the pilot automatically transitions to the standard 24,900 SEK/month subscription. If criteria are not met, you owe nothing.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="mt-auto border-t border-borderSlate bg-darkBg py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent">
+                        <i class="fa-solid fa-code-merge text-xs"></i>
+                    </div>
+                    <span class="font-mono font-bold text-white text-sm">Good Stuff Dev</span>
+                    <span class="text-xs text-gray-500 font-mono">| Linköping & Norrköping, Sweden</span>
+                </div>
+
+                <div class="text-xs text-gray-400 font-mono">
+                    Contact: <a href="mailto:gustav@goodstuffdev.se" class="text-emerald-400 hover:underline">gustav@goodstuffdev.se</a>
+                </div>
+
+                <div class="text-xs text-gray-500 font-mono">
+                    &copy; 2026 Good Stuff Dev (goodstuffdev.se). All rights reserved.
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ================= DEMO VIDEO MODAL ================= -->
+    <div id="demo-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-borderSlate rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative">
+            
+            <div class="p-4 bg-darkBg border-b border-borderSlate flex items-center justify-between">
+                <span class="font-mono text-xs text-emerald-400 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-play"></i> Good Stuff Dev - 90s Walkthrough
+                </span>
+                <button onclick="closeDemoModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="aspect-video bg-black flex items-center justify-center p-8 text-center relative">
+                <!-- Video Container / Placeholder -->
+                <div class="space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mx-auto animate-pulse">
+                        <i class="fa-solid fa-play ml-1"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-lg">90-Second Loom Demo Preview</h4>
+                    <p class="text-xs text-gray-400 max-w-md mx-auto">
+                        In the live version, your Loom embed video runs here showing an end-to-end Sentry webhook error turning into a passed unit test and GitHub PR.
+                    </p>
+                    <a href="mailto:gustav@goodstuffdev.se?subject=Request%20Loom%20Demo" class="inline-block px-5 py-2 rounded-lg bg-emeraldAccent text-slate-950 font-mono text-xs font-bold mt-2">
+                        Request Direct Loom Link via Email
                     </a>
                 </div>
             </div>
-        </section>
 
-        <!-- Code/Terminal Demo Showcase -->
-        <section class="pb-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="bg-dark-card border border-dark-border rounded-xl shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
-                    <!-- Terminal Bar -->
-                    <div class="bg-slate-900 px-4 py-3 border-b border-dark-border flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                            <span class="text-slate-400 text-xs ml-2">healing-engine — Context & Remediation Control Plane</span>
-                        </div>
-                        <span class="text-slate-500 text-xs"><i class="fa-brands fa-github mr-1"></i> GitOps Remediation</span>
-                    </div>
-                    <!-- Terminal Body -->
-                    <div class="p-5 space-y-3 text-slate-300 overflow-x-auto">
-                        <p class="text-slate-500"># Ingesting raw error event from log sink...</p>
-                        <p><span class="text-brand-500">➜</span> <span class="text-white">agentic-heal ingest --payload trace_err_98241.json</span></p>
-                        
-                        <p class="text-yellow-400 font-semibold">⚙️ Context Engine Processing:</p>
-                        <p class="text-slate-400">   ├─ Stripping raw framework noise & redacting sensitive payload data...</p>
-                        <p class="text-slate-400">   ├─ Isolating root cause AST frame in repository (payments-service)...</p>
-                        <p class="text-slate-400">   └─ Context optimization complete: 340 log lines reduced to 12 relevant AST nodes.</p>
-
-                        <p class="text-cyan-400">🤖 Invoking Remediation Agent with pruned context...</p>
-                        <p class="text-slate-400">   ├─ Applying fallback patch strategy for schema mismatch...</p>
-                        <p class="text-slate-400">   ├─ No unit test found for target method. Generating unit test suite...</p>
-                        <p class="text-slate-400">   └─ Running native test runner in isolated sandbox container...</p>
-                        
-                        <p class="text-emerald-400 font-semibold">✔ Test suite executed: 1 existing passed, 1 new unit test created & passed!</p>
-                        <p class="text-slate-200"><i class="fa-solid fa-code-branch text-brand-500 mr-1"></i> Branch created: <span class="text-brand-500">fix/auto-heal-schema-mismatch-98241</span></p>
-                        <p class="text-brand-500 font-semibold">🚀 GitOps PR Created: https://github.com/org/payments-service/pull/142 (Includes new tests)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Architecture Breakdown / Workflow Section -->
-        <section class="py-16 border-t border-dark-border/40 bg-slate-950/20">
-            <div class="max-w-5xl mx-auto px-6 text-center">
-                <h3 class="text-xs font-mono text-brand-500 uppercase tracking-widest mb-10">Arkitekturen: Förädling Före AI-Exekvering</h3>
-                <div class="grid md:grid-cols-4 gap-4 items-stretch">
-                    
-                    <div class="p-4 rounded-xl bg-dark-card border border-dark-border text-left flex flex-col justify-between">
-                        <div>
-                            <div class="text-slate-500 text-xs font-mono mb-2">01. INGESTION</div>
-                            <div class="font-semibold text-white mb-1">Raw Error Event</div>
-                            <div class="text-xs text-slate-400">Fångar obearbetade stack traces och payloads från DLQ, Sentry eller Datadog.</div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 rounded-xl bg-dark-card border border-brand-500/40 text-left flex flex-col justify-between relative shadow-lg shadow-brand-500/5">
-                        <span class="absolute -top-2.5 right-3 px-2 py-0.5 rounded bg-brand-500 text-slate-950 text-[10px] font-mono font-bold uppercase">Mellansteget</span>
-                        <div>
-                            <div class="text-brand-500 text-xs font-mono mb-2">02. PROPRIETARY ENGINE</div>
-                            <div class="font-semibold text-white mb-1">Context Refiner</div>
-                            <div class="text-xs text-slate-400">Tvättar brus, maskerar känslig data och plockar ut exakt den kodkontext som behövs.</div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 rounded-xl bg-dark-card border border-dark-border text-left flex flex-col justify-between">
-                        <div>
-                            <div class="text-slate-500 text-xs font-mono mb-2">03. AUTOMATED TESTING</div>
-                            <div class="font-semibold text-white mb-1">Test Execution & Creation</div>
-                            <div class="text-xs text-slate-400">Verifierar fixen mot befintliga tester. Saknas tester skapas nya enhetstester automatiskt.</div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 rounded-xl bg-dark-card border border-dark-border text-left flex flex-col justify-between">
-                        <div>
-                            <div class="text-slate-500 text-xs font-mono mb-2">04. GITOPS</div>
-                            <div class="font-semibold text-white mb-1">Human-in-the-Loop PR</div>
-                            <div class="text-xs text-slate-400">Skapar en färdig Pull Request med kodändring och nya enhetstester för granskning.</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Key Features Section -->
-        <section id="architecture" class="py-20 border-t border-dark-border/60 bg-slate-950/40">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Ingen "Black Box". Byggt för kontroll och kalkylbarhet.</h2>
-                    <p class="text-slate-400 max-w-2xl mx-auto mb-8">
-                        Vår plattform kombinerar deterministisk logik i mellansteget med autonom kodgenerering.
-                    </p>
-                    
-                    <div class="grid md:grid-cols-3 gap-6 text-left mt-8">
-                        <div class="p-5 rounded-xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all">
-                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center mb-4 text-lg">
-                                <i class="fa-solid fa-filter"></i>
-                            </div>
-                            <h3 class="font-semibold text-white mb-2">Precision Context Engine</h3>
-                            <p class="text-sm text-slate-400 leading-relaxed">
-                                Mellansteget tvättar bort tusentals rader överflödig loggdata och känslig information. Agenten får enbart den exakta kodkontexten som krävs för problemet.
-                            </p>
-                        </div>
-                        <div class="p-5 rounded-xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all">
-                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center mb-4 text-lg">
-                                <i class="fa-solid fa-vial-circle-check"></i>
-                            </div>
-                            <h3 class="font-semibold text-white mb-2">Automatisk Testskapande</h3>
-                            <p class="text-sm text-slate-400 leading-relaxed">
-                                Utöver att köra er befintliga testsvit skapar agenten nya enhetstester för den buggfix som genererats (om ramverksstöd finns i repon).
-                            </p>
-                        </div>
-                        <div class="p-5 rounded-xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all">
-                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center mb-4 text-lg">
-                                <i class="fa-solid fa-code-pull-request"></i>
-                            </div>
-                            <h3 class="font-semibold text-white mb-2">Universal & Safe GitOps</h3>
-                            <p class="text-sm text-slate-400 leading-relaxed">
-                                Fungerar över alla språk (Node, Python, Go, Java, .NET). Ingenting skickas till produktion utan er godkända Pull Request.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Demo Contact Section -->
-        <section id="demo" class="py-20 border-t border-dark-border">
-            <div class="max-w-3xl mx-auto px-6 text-center">
-                <div class="bg-dark-card border border-dark-border p-8 sm:p-12 rounded-2xl relative overflow-hidden">
-                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl"></div>
-                    
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Minska er tid på oplanerad felsökning</h2>
-                    <p class="text-slate-400 mb-8 text-sm sm:text-base leading-relaxed">
-                        Vi söker 2 pilotföretag för ett 30-dagars Design Partnership. Vi kopplar upp er mest kraschbenägna tjänst och visar hur den genererar färdiga PRs med tillhörande tester vid fel.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="mailto:gustav@goodstuffdev.se?subject=Förfrågan%20om%20Pilot/Demo%20—%20Good%20Stuff%20Dev" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-brand-500 text-slate-950 font-bold hover:bg-brand-600 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
-                            <i class="fa-regular fa-envelope"></i>
-                            Skicka e-post direkt
-                        </a>
-                    </div>
-                    
-                    <p class="text-xs text-slate-500 mt-6">
-                        eller kontakta grundaren direkt: <span class="text-slate-300 font-mono">gustav@goodstuffdev.se</span>
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-dark-border py-8 text-xs text-slate-500 bg-slate-950">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-slate-300">Good Stuff Dev</span>
-                <span>— Deterministic & Agentic Remediation Engine</span>
-            </div>
-            <div>
-                © 2026 Good Stuff Dev. All rights reserved.
-            </div>
         </div>
-    </footer>
+    </div>
 
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // --- Workflow Switcher (Before vs After) ---
+        function switchWorkflow(mode) {
+            const afterWork = document.getElementById('workflow-after');
+            const beforeWork = document.getElementById('workflow-before');
+            const btnAfter = document.getElementById('btn-after');
+            const btnBefore = document.getElementById('btn-before');
+
+            if (mode === 'before') {
+                afterWork.classList.add('hidden');
+                beforeWork.classList.remove('hidden');
+                
+                btnBefore.className = "px-6 py-2.5 rounded-lg font-mono text-sm font-semibold transition-all bg-red-500 text-white shadow-md";
+                btnAfter.className = "px-6 py-2.5 rounded-lg font-mono text-sm font-semibold text-gray-400 hover:text-white transition-all";
+            } else {
+                beforeWork.classList.add('hidden');
+                afterWork.classList.remove('hidden');
+                
+                btnAfter.className = "px-6 py-2.5 rounded-lg font-mono text-sm font-semibold transition-all bg-emeraldAccent text-slate-950 shadow-md";
+                btnBefore.className = "px-6 py-2.5 rounded-lg font-mono text-sm font-semibold text-gray-400 hover:text-white transition-all";
+            }
+        }
+
+        // --- ROI Calculator Logic ---
+        const inputDevs = document.getElementById('input-devs');
+        const inputHours = document.getElementById('input-hours');
+        const inputRate = document.getElementById('input-rate');
+
+        const valDevs = document.getElementById('val-devs');
+        const valHours = document.getElementById('val-hours');
+        const valRate = document.getElementById('val-rate');
+
+        const resHours = document.getElementById('res-hours');
+        const resMoney = document.getElementById('res-money');
+        const resRoi = document.getElementById('res-roi');
+
+        function calculateROI() {
+            const devs = parseInt(inputDevs.value);
+            const hoursPerDev = parseInt(inputHours.value);
+            const rate = parseInt(inputRate.value);
+
+            valDevs.innerText = `${devs} devs`;
+            valHours.innerText = `${hoursPerDev} hours`;
+            valRate.innerText = `${rate.toLocaleString()} SEK/hr`;
+
+            const totalHoursSaved = devs * hoursPerDev;
+            const totalMoneySaved = totalHoursSaved * rate;
+            const netRoi = totalMoneySaved - 24900;
+
+            resHours.innerText = `${totalHoursSaved} hrs`;
+            resMoney.innerText = `${totalMoneySaved.toLocaleString()} SEK`;
+            
+            if (netRoi > 0) {
+                resRoi.innerText = `+${netRoi.toLocaleString()} SEK / mo`;
+                resRoi.className = "text-emerald-400 font-bold text-sm";
+            } else {
+                resRoi.innerText = `${netRoi.toLocaleString()} SEK / mo`;
+                resRoi.className = "text-yellow-400 font-bold text-sm";
+            }
+        }
+
+        inputDevs.addEventListener('input', calculateROI);
+        inputHours.addEventListener('input', calculateROI);
+        inputRate.addEventListener('input', calculateROI);
+        calculateROI(); // initial call
+
+        // --- FAQ Accordion Logic ---
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // --- Demo Modal Logic ---
+        function openDemoModal() {
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
