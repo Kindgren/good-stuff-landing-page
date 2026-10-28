@@ -54,27 +54,6 @@
             box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.15);
             border-color: rgba(16, 185, 129, 0.4);
         }
-
-        input[type=range] {
-            -webkit-appearance: none;
-            background: #1F2937;
-            border-radius: 8px;
-            height: 8px;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 22px;
-            width: 22px;
-            border-radius: 50%;
-            background: #10B981;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-            transition: all 0.15s ease-in-out;
-        }
-        input[type=range]::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-            background: #34D399;
-        }
         
         .bg-grid-pattern {
             background-size: 40px 40px;
@@ -119,7 +98,6 @@
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
                     <a href="#how-it-works" class="hover:text-emeraldAccent transition-colors">How it Works</a>
                     <a href="#architecture" class="hover:text-emeraldAccent transition-colors">Architecture & Security</a>
-                    <a href="#roi-calculator" class="hover:text-emeraldAccent transition-colors">ROI Calculator</a>
                     <a href="#pilot" class="hover:text-emeraldAccent transition-colors">Start Pilot</a>
                     <a href="#faq" class="hover:text-emeraldAccent transition-colors">FAQ</a>
                 </nav>
@@ -142,7 +120,6 @@
             <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-borderSlate px-4 py-6 flex flex-col gap-4 text-center">
                 <a href="#how-it-works" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">How it Works</a>
                 <a href="#architecture" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Architecture & Security</a>
-                <a href="#roi-calculator" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">ROI Calculator</a>
                 <a href="#pilot" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Start Pilot</a>
                 <a href="#faq" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">FAQ</a>
                 <a href="#pilot" class="mt-2 w-full py-3 rounded-lg bg-emeraldAccent text-slate-950 font-semibold text-sm" onclick="toggleMobileMenu()">
@@ -152,12 +129,12 @@
         </header>
 
         <!-- HERO SECTION -->
-        <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-4xl mx-auto">
                 
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-medium mb-8">
                     <i class="fa-solid fa-bolt text-emerald-400"></i>
-                    <span>Autonomous AI Agent for Production Integration Healing</span>
+                    <span>Autonomous Integration Remediation for Production</span>
                 </div>
 
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] text-white">
@@ -166,7 +143,7 @@
                 </h1>
 
                 <p class="mt-6 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-normal leading-relaxed">
-                    <strong class="text-white font-semibold">Good Stuff Dev</strong> captures Sentry & Datadog error alerts, reproduces bugs inside isolated Docker sandboxes, runs your unit test suite, and submits verified Pull Requests to GitHub/GitLab—<span class="text-emerald-400 underline underline-offset-4 decoration-emerald-500/40">before developers even open their IDE</span>.
+                    <strong class="text-white font-semibold">Good Stuff Dev</strong> captures Sentry & Datadog error alerts, reproduces bugs inside isolated Docker sandboxes, runs your unit test suite, and submits verified Pull Requests to GitHub/GitLab.
                 </p>
 
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -346,7 +323,7 @@
         </section>
 
         <!-- VALUE PROPOSITION GRID -->
-        <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-20 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Why Good Stuff Dev</h2>
                 <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Engineered for Zero Friction & Extreme Trust</p>
@@ -391,7 +368,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Gemini Enterprise Privacy</h3>
                         <p class="text-sm text-gray-400 leading-relaxed">
-                            Powered by Google Gemini Enterprise API endpoints under paid commercial terms—your codebase and logs are NEVER used for model training.
+                            Powered by Google Gemini Enterprise API endpoints under paid commercial terms (your codebase and logs are NEVER used for model training).
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
@@ -493,13 +470,9 @@
 
             </div>
         </section>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- PILOT PROGRAM SECTION -->
-        <section id="pilot" class="py-24 bg-cardBg/40 border-t border-borderSlate">
+        <section id="pilot" class="py-20 md:py-24 bg-cardBg/40 border-t border-borderSlate">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl p-8 sm:p-12 max-w-4xl mx-auto text-center relative shadow-2xl emerald-glow">
@@ -541,7 +514,7 @@
         </section>
 
         <!-- SECURITY & FAQ ACCORDION -->
-        <section id="faq" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <section id="faq" class="py-20 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="text-center mb-16">
                 <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Security & FAQ</h2>
                 <p class="mt-2 text-3xl font-extrabold text-white">Frequently Asked Questions</p>
@@ -668,38 +641,6 @@
                 btnBefore.className = "px-6 py-2.5 rounded-lg font-mono text-sm font-semibold text-gray-400 hover:text-white transition-all";
             }
         }
-
-        const inputDevs = document.getElementById('input-devs');
-        const inputHours = document.getElementById('input-hours');
-        const inputRate = document.getElementById('input-rate');
-
-        const valDevs = document.getElementById('val-devs');
-        const valHours = document.getElementById('val-hours');
-        const valRate = document.getElementById('val-rate');
-
-        const resHours = document.getElementById('res-hours');
-        const resMoney = document.getElementById('res-money');
-
-        function calculateROI() {
-            const devs = parseInt(inputDevs.value);
-            const hoursPerDev = parseInt(inputHours.value);
-            const rate = parseInt(inputRate.value);
-
-            valDevs.innerText = `${devs} devs`;
-            valHours.innerText = `${hoursPerDev} hours`;
-            valRate.innerText = `${rate.toLocaleString()} SEK/hr`;
-
-            const totalHoursSaved = devs * hoursPerDev;
-            const totalMoneySaved = totalHoursSaved * rate;
-
-            resHours.innerText = `${totalHoursSaved} hrs`;
-            resMoney.innerText = `${totalMoneySaved.toLocaleString()} SEK`;
-        }
-
-        inputDevs.addEventListener('input', calculateROI);
-        inputHours.addEventListener('input', calculateROI);
-        inputRate.addEventListener('input', calculateROI);
-        calculateROI();
 
         function toggleFaq(id) {
             const content = document.getElementById(id);
