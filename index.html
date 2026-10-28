@@ -46,7 +46,6 @@
             overflow-x: hidden;
         }
 
-        /* Custom Subtle Glow Effects */
         .emerald-glow {
             box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
         }
@@ -56,7 +55,6 @@
             border-color: rgba(16, 185, 129, 0.4);
         }
 
-        /* Custom Range Slider Styling */
         input[type=range] {
             -webkit-appearance: none;
             background: #1F2937;
@@ -78,7 +76,6 @@
             background: #34D399;
         }
         
-        /* Grid background pattern */
         .bg-grid-pattern {
             background-size: 40px 40px;
             background-image: 
@@ -86,7 +83,6 @@
                 linear-gradient(to bottom, rgba(31, 41, 55, 0.3) 1px, transparent 1px);
         }
 
-        /* Code Block Styling */
         .code-block {
             background-color: #080C14;
             border: 1px solid #1F2937;
@@ -97,18 +93,15 @@
 </head>
 <body class="bg-darkBg text-gray-100 antialiased selection:bg-emerald-500 selection:text-black">
 
-    <!-- Ambient Gradient Background -->
     <div class="fixed inset-0 bg-grid-pattern pointer-events-none opacity-60 z-0"></div>
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full z-0"></div>
 
-    <!-- MAIN WRAPPER -->
     <div class="relative z-10 flex flex-col min-h-screen">
 
-        <!-- ================= DYNAMIC HEADER & NAV ================= -->
+        <!-- HEADER -->
         <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 border-b border-borderSlate transition-all duration-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 
-                <!-- Logo -->
                 <a href="#" class="flex items-center gap-3 group">
                     <img src="GSLogo.png" alt="Good Stuff Dev Logo" class="h-10 w-auto object-contain" />
                     <div class="flex flex-col">
@@ -123,69 +116,61 @@
                     </div>
                 </a>
 
-                <!-- Desktop Nav Links -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
                     <a href="#how-it-works" class="hover:text-emeraldAccent transition-colors">How it Works</a>
                     <a href="#architecture" class="hover:text-emeraldAccent transition-colors">Architecture & Security</a>
                     <a href="#roi-calculator" class="hover:text-emeraldAccent transition-colors">ROI Calculator</a>
-                    <a href="#pricing" class="hover:text-emeraldAccent transition-colors">Pricing</a>
+                    <a href="#pilot" class="hover:text-emeraldAccent transition-colors">Start Pilot</a>
                     <a href="#faq" class="hover:text-emeraldAccent transition-colors">FAQ</a>
                 </nav>
 
-                <!-- Header Action Buttons -->
                 <div class="hidden md:flex items-center gap-4">
                     <a href="mailto:gustav@goodstuffdev.se" class="text-xs font-mono text-gray-400 hover:text-white transition-colors">
                         Contact Sales
                     </a>
-                    <a href="#pricing" class="px-5 py-2.5 rounded-lg bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-semibold text-sm transition-all duration-200 emerald-glow flex items-center gap-2">
+                    <a href="#pilot" class="px-5 py-2.5 rounded-lg bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-semibold text-sm transition-all duration-200 emerald-glow flex items-center gap-2">
                         <span>Start 14-Day Pilot</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
 
-            <!-- Mobile Drawer Menu -->
             <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-borderSlate px-4 py-6 flex flex-col gap-4 text-center">
                 <a href="#how-it-works" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">How it Works</a>
                 <a href="#architecture" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Architecture & Security</a>
                 <a href="#roi-calculator" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">ROI Calculator</a>
-                <a href="#pricing" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Pricing</a>
+                <a href="#pilot" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">Start Pilot</a>
                 <a href="#faq" class="py-2 text-gray-300 hover:text-emeraldAccent font-medium" onclick="toggleMobileMenu()">FAQ</a>
-                <a href="#pricing" class="mt-2 w-full py-3 rounded-lg bg-emeraldAccent text-slate-950 font-semibold text-sm" onclick="toggleMobileMenu()">
+                <a href="#pilot" class="mt-2 w-full py-3 rounded-lg bg-emeraldAccent text-slate-950 font-semibold text-sm" onclick="toggleMobileMenu()">
                     Start 14-Day Pilot
                 </a>
             </div>
         </header>
 
-        <!-- ================= HERO SECTION ================= -->
+        <!-- HERO SECTION -->
         <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-4xl mx-auto">
                 
-                <!-- Badge -->
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-medium mb-8">
                     <i class="fa-solid fa-bolt text-emerald-400"></i>
                     <span>Autonomous AI Agent for Production Integration Healing</span>
                 </div>
 
-                <!-- Main Headline -->
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] text-white">
                     Stop Waking Up to <br class="hidden sm:inline"/>
                     <span class="bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">Crashed Webhooks</span> & DLQ Backlogs.
                 </h1>
 
-                <!-- Subheadline -->
                 <p class="mt-6 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-normal leading-relaxed">
                     <strong class="text-white font-semibold">Good Stuff Dev</strong> captures Sentry & Datadog error alerts, reproduces bugs inside isolated Docker sandboxes, runs your unit test suite, and submits verified Pull Requests to GitHub/GitLab—<span class="text-emerald-400 underline underline-offset-4 decoration-emerald-500/40">before developers even open their IDE</span>.
                 </p>
 
-                <!-- Dual CTAs -->
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-bold text-base transition-all duration-200 emerald-glow flex items-center justify-center gap-3">
+                    <a href="#pilot" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-bold text-base transition-all duration-200 emerald-glow flex items-center justify-center gap-3">
                         <span>Book 14-Day Free Pilot</span>
                         <i class="fa-solid fa-chevron-right text-xs"></i>
                     </a>
@@ -197,7 +182,6 @@
                     </button>
                 </div>
 
-                <!-- Trust Badges Strip -->
                 <div class="mt-16 pt-8 border-t border-borderSlate/60 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div class="flex items-center justify-center gap-2 text-gray-400 font-mono text-xs">
                         <i class="fa-solid fa-shield-halved text-emeraldAccent"></i>
@@ -213,24 +197,23 @@
                     </div>
                     <div class="flex items-center justify-center gap-2 text-gray-400 font-mono text-xs">
                         <i class="fa-solid fa-lock text-emeraldAccent"></i>
-                        <span>Enterprise LLM Data Privacy</span>
+                        <span>Gemini Enterprise Privacy</span>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- ================= SHOWCASE / BEFORE & AFTER TOGGLE ================= -->
+        <!-- WORKFLOW SHOWCASE -->
         <section id="how-it-works" class="py-20 bg-cardBg/40 border-y border-borderSlate relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Autonomous Architecture</h2>
                     <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">How Good Stuff Dev Heals Your Stack</p>
-                    <p class="mt-4 text-gray-400">From incident alert to green pull request in under 120 seconds.</p>
+                    <p class="mt-4 text-gray-400">From incident alert to reproduced error, verified test suite, and review-ready pull request.</p>
                 </div>
 
-                <!-- Interactive Switcher: Before vs After -->
                 <div class="flex justify-center mb-12">
                     <div class="p-1.5 rounded-xl bg-darkBg border border-borderSlate inline-flex gap-2">
                         <button id="btn-after" onclick="switchWorkflow('after')" class="px-6 py-2.5 rounded-lg font-mono text-sm font-semibold transition-all bg-emeraldAccent text-slate-950 shadow-md">
@@ -242,12 +225,9 @@
                     </div>
                 </div>
 
-                <!-- Workflow Display Container -->
                 <div id="workflow-container" class="transition-all duration-300">
-                    <!-- AFTER Workflow (Default) -->
                     <div id="workflow-after" class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         
-                        <!-- Step 1 -->
                         <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
                             <div>
                                 <div class="flex items-center justify-between mb-4">
@@ -264,7 +244,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
                         <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
                             <div>
                                 <div class="flex items-center justify-between mb-4">
@@ -281,7 +260,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 3 -->
                         <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
                             <div>
                                 <div class="flex items-center justify-between mb-4">
@@ -298,7 +276,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 4 -->
                         <div class="code-block p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all card-glow relative group">
                             <div>
                                 <div class="flex items-center justify-between mb-4">
@@ -316,7 +293,6 @@
 
                     </div>
 
-                    <!-- BEFORE Workflow (Hidden by default) -->
                     <div id="workflow-before" class="hidden grid grid-cols-1 md:grid-cols-4 gap-6">
                         
                         <div class="code-block p-6 border-red-900/40 bg-red-950/10 flex flex-col justify-between">
@@ -369,7 +345,7 @@
             </div>
         </section>
 
-        <!-- ================= VALUE PROPOSITION GRID ================= -->
+        <!-- VALUE PROPOSITION GRID -->
         <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Why Good Stuff Dev</h2>
@@ -378,7 +354,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
-                <!-- Card 1 -->
                 <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
@@ -394,15 +369,14 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
-                            <i class="fa-solid fa-box-archive"></i>
+                            <i class="fa-solid fa-flask text-emeraldAccent"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">100% Deterministic</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Sandboxed Validation</h3>
                         <p class="text-sm text-gray-400 leading-relaxed">
-                            Fixes are never guessed in the dark. Every single patch is compiled and executed against your real unit test suite in an isolated Docker sandbox.
+                            Fixes are never guessed in the dark. Every patch is compiled and executed against your test suite in an isolated, ephemeral Docker container.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
@@ -410,15 +384,14 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
                             <i class="fa-solid fa-user-shield"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Enterprise LLM Security</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Gemini Enterprise Privacy</h3>
                         <p class="text-sm text-gray-400 leading-relaxed">
-                            Powered by Google Gemini Enterprise APIs. Your proprietary codebase and error logs are strictly confidential and NEVER used for model training.
+                            Powered by Google Gemini Enterprise API endpoints under paid commercial terms—your codebase and logs are NEVER used for model training.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
@@ -426,7 +399,6 @@
                     </div>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="bg-cardBg border border-borderSlate hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 card-glow flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emeraldAccent text-xl mb-6">
@@ -434,7 +406,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Human-in-the-Loop</h3>
                         <p class="text-sm text-gray-400 leading-relaxed">
-                            You stay in total control. The agent opens clean, well-commented Pull Requests with complete root-cause explanations ready for 1-click review.
+                            Zero auto-merging. The agent opens clean Pull Requests with root-cause explanations ready for 1-click review by your team.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-borderSlate/60 text-xs font-mono text-emerald-400">
@@ -445,13 +417,12 @@
             </div>
         </section>
 
-        <!-- ================= ARCHITECTURE & SECURITY SECTION ================= -->
+        <!-- ARCHITECTURE & SECURITY SECTION -->
         <section id="architecture" class="py-20 bg-cardBg/30 border-t border-borderSlate">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
-                    <!-- Left Column Info -->
                     <div class="lg:col-span-5">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs mb-4">
                             <i class="fa-solid fa-shield"></i> Enterprise Grade Isolation
@@ -480,15 +451,19 @@
                                 <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs mt-0.5">
                                     <i class="fa-solid fa-check"></i>
                                 </div>
-                                <span class="text-sm text-gray-300"><strong class="text-white">Ephemeral Docker Sandboxes:</strong> Every bug execution runs in a isolated, single-use container destroyed immediately after test execution.</span>
+                                <span class="text-sm text-gray-300"><strong class="text-white">Ephemeral Docker Sandboxes:</strong> Every bug execution runs in an isolated, single-use container destroyed immediately after test execution.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs mt-0.5">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span class="text-sm text-gray-300"><strong class="text-white">Gemini Commercial Terms:</strong> Input prompts and payloads are zero-retained and strictly excluded from model training.</span>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- Right Column Interactive Terminal -->
                     <div class="lg:col-span-7">
                         <div class="code-block overflow-hidden shadow-2xl border border-borderSlate">
-                            <!-- Window Header -->
                             <div class="px-4 py-3 bg-darkBg border-b border-borderSlate flex items-center justify-between">
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
@@ -499,14 +474,13 @@
                                 <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Java 21 • Docker Active</span>
                             </div>
                             
-                            <!-- Terminal Content -->
                             <div class="p-5 font-mono text-xs space-y-3 text-gray-300 leading-relaxed overflow-x-auto">
                                 <p class="text-gray-500">[14:22:01.042] INFO  - Webhook received from Sentry (Event ID: #sntry-9042)</p>
                                 <p class="text-gray-300">[14:22:01.110] INFO  - Triggering autonomous remediation workflow for tenant: <span class="text-emerald-400">se-ecommerce-prod</span></p>
                                 <p class="text-blue-400">[14:22:01.405] EXEC  - git clone git@github.com:client/core-api.git --deploy-key=scoped</p>
                                 <p class="text-blue-400">[14:22:02.890] EXEC  - docker run --network=none ephemeral-sandbox-8821</p>
                                 <p class="text-yellow-400">[14:22:04.120] WARN  - Exception reproduced: JsonProperty 'tax_rate' missing in webhook body</p>
-                                <p class="text-purple-400">[14:22:06.500] LLM   - Prompting Gemini Pro Enterprise (Quota bucket: customer-isolated)</p>
+                                <p class="text-purple-400">[14:22:06.500] LLM   - Prompting Gemini Pro Enterprise (Zero-Data-Retention bucket)</p>
                                 <p class="text-emerald-400">[14:22:09.110] FIX   - Generated defensive null-check patch in OrderPayloadHandler.java</p>
                                 <p class="text-blue-400">[14:22:11.840] TEST  - Running `./gradlew test` inside sandbox container...</p>
                                 <p class="text-emerald-400 font-bold">[14:22:18.230] SUCCESS - BUILD SUCCESSFUL in 6s. 112 tests passed, 0 failures.</p>
@@ -519,200 +493,54 @@
 
             </div>
         </section>
-
-        <!-- ================= INTERACTIVE ROI CALCULATOR ================= -->
-        <section id="roi-calculator" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-cardBg border border-borderSlate rounded-3xl p-8 sm:p-12 relative overflow-hidden card-glow">
-                
-                <div class="max-w-3xl mb-12">
-                    <span class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Interactive ROI Calculator</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Calculate Your Developer Hours Saved</h2>
-                    <p class="text-gray-400 mt-3">See how much engineering capacity and money your team reclaims every month by eliminating manual webhook and integration debugging.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
-                    <!-- Sliders Side -->
-                    <div class="lg:col-span-7 space-y-8">
-                        
-                        <!-- Slider 1 -->
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="text-sm font-semibold text-gray-200">Number of Senior Developers</label>
-                                <span id="val-devs" class="font-mono text-emeraldAccent font-bold text-lg">10 devs</span>
-                            </div>
-                            <input type="range" id="input-devs" min="2" max="50" value="10" class="w-full">
-                        </div>
-
-                        <!-- Slider 2 -->
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="text-sm font-semibold text-gray-200">On-Call / Felsökning Hours per Dev / Month</label>
-                                <span id="val-hours" class="font-mono text-emeraldAccent font-bold text-lg">8 hours</span>
-                            </div>
-                            <input type="range" id="input-hours" min="2" max="25" value="8" class="w-full">
-                        </div>
-
-                        <!-- Slider 3 -->
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="text-sm font-semibold text-gray-200">Average Developer Hourly Rate (SEK)</label>
-                                <span id="val-rate" class="font-mono text-emeraldAccent font-bold text-lg">850 SEK/hr</span>
-                            </div>
-                            <input type="range" id="input-rate" min="500" max="1500" step="50" value="850" class="w-full">
-                        </div>
-
                     </div>
-
-                    <!-- Results Output Side -->
-                    <div class="lg:col-span-5 bg-darkBg border border-borderSlate rounded-2xl p-8 text-center flex flex-col justify-between h-full">
-                        <div>
-                            <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">Estimated Monthly Savings</span>
-                            
-                            <div class="my-6">
-                                <div id="res-hours" class="text-4xl sm:text-5xl font-extrabold text-white font-mono">
-                                    80 hrs
-                                </div>
-                                <div class="text-xs text-emerald-400 font-mono mt-1">Developer time reclaimed / month</div>
-                            </div>
-
-                            <div class="pt-6 border-t border-borderSlate">
-                                <div id="res-money" class="text-3xl sm:text-4xl font-extrabold text-emeraldAccent font-mono">
-                                    68,000 SEK
-                                </div>
-                                <div class="text-xs text-gray-400 mt-1">Monthly cost of wasted debugging time</div>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 pt-6 border-t border-borderSlate/60 bg-emerald-500/5 -mx-8 -mb-8 p-6 rounded-b-2xl">
-                            <div class="flex items-center justify-between text-xs font-mono">
-                                <span class="text-gray-400">Good Stuff Dev Subscription:</span>
-                                <span class="text-white font-bold">24,900 SEK / mo</span>
-                            </div>
-                            <div class="flex items-center justify-between text-xs font-mono mt-2">
-                                <span class="text-emerald-400 font-bold">Net Monthly ROI:</span>
-                                <span id="res-roi" class="text-emerald-400 font-bold text-sm">+43,100 SEK / mo</span>
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
-
             </div>
         </section>
 
-        <!-- ================= PRICING SECTION ================= -->
-        <section id="pricing" class="py-24 bg-cardBg/40 border-t border-borderSlate">
+        <!-- PILOT PROGRAM SECTION -->
+        <section id="pilot" class="py-24 bg-cardBg/40 border-t border-borderSlate">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Simple & Transparent</h2>
-                    <p class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Risk-Free 14-Day Pilot to Standard Tier</p>
-                    <p class="mt-4 text-gray-400">Test Good Stuff Dev on your own repository with clear, agreed-upon Success Criteria before committing a single krona.</p>
-                </div>
+                <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl p-8 sm:p-12 max-w-4xl mx-auto text-center relative shadow-2xl emerald-glow">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold mb-6 uppercase tracking-wider">
+                        <i class="fa-solid fa-flask"></i> Frictionless Pilot Program
+                    </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Start Your 14-Day Evaluation</h2>
                     
-                    <!-- Card 1: 14-Day Pilot -->
-                    <div class="bg-cardBg border border-borderSlate rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-emerald-500/40 transition-all card-glow relative">
-                        <div>
-                            <div class="flex justify-between items-center mb-6">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white">14-Day Risk-Free Pilot</h3>
-                                    <p class="text-xs text-gray-400 font-mono mt-1">Evaluation on your live codebase</p>
-                                </div>
-                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">0 SEK</span>
-                            </div>
+                    <p class="mt-4 text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                        Test Good Stuff Dev on your own repository with clear, agreed-upon Success Criteria before making any commercial commitment.
+                    </p>
 
-                            <p class="text-sm text-gray-300 leading-relaxed mb-8">
-                                We set up predefined success criteria (e.g., automated webhook error reproduction + minimum 2 verified PRs). If we don't hit the targets, it costs you 0 SEK.
-                            </p>
-
-                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
-                                    <span>Full autonomous agent access on 1 repo</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
-                                    <span>SSH Deploy Key + Static IP setup (<10 mins)</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
-                                    <span>Predefined Success Criteria agreement</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-check text-emeraldAccent"></i>
-                                    <span>Zero commitment if targets aren't met</span>
-                                </li>
-                            </ul>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10 text-left">
+                        <div class="bg-darkBg p-5 rounded-xl border border-borderSlate">
+                            <div class="text-emeraldAccent font-mono font-bold text-sm mb-1">01. Setup</div>
+                            <div class="text-white font-semibold text-sm">10-Min Integration</div>
+                            <div class="text-xs text-gray-400 mt-1">SSH Deploy Keys & webhook setup. No infra access required.</div>
                         </div>
-
-                        <a href="mailto:gustav@goodstuffdev.se?subject=14-Day%20Good%20Stuff%20Dev%20Pilot" class="w-full py-4 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-center text-sm border border-borderSlate transition-all flex items-center justify-center gap-2">
-                            <span>Request Pilot Setup</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+                        <div class="bg-darkBg p-5 rounded-xl border border-borderSlate">
+                            <div class="text-emeraldAccent font-mono font-bold text-sm mb-1">02. Evaluate</div>
+                            <div class="text-white font-semibold text-sm">Real Bug Remediations</div>
+                            <div class="text-xs text-gray-400 mt-1">Agent catches failures, runs test suites, and submits green PRs.</div>
+                        </div>
+                        <div class="bg-darkBg p-5 rounded-xl border border-borderSlate">
+                            <div class="text-emeraldAccent font-mono font-bold text-sm mb-1">03. Review</div>
+                            <div class="text-white font-semibold text-sm">Zero Auto-Commit</div>
+                            <div class="text-xs text-gray-400 mt-1">Review value delivered with your team before deciding to continue.</div>
+                        </div>
                     </div>
 
-                    <!-- Card 2: Standard Plan (Featured) -->
-                    <div class="bg-cardBg border-2 border-emerald-500 rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative shadow-2xl emerald-glow">
-                        <div class="absolute -top-4 right-8 bg-emeraldAccent text-slate-950 font-mono text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
-                            Standard Tier
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-baseline mb-6">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white">Standard Subscription</h3>
-                                    <p class="text-xs text-gray-400 font-mono mt-1">Flat monthly rate per organization</p>
-                                </div>
-                            </div>
-
-                            <div class="mb-8">
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-4xl sm:text-5xl font-extrabold text-white font-mono">24,900</span>
-                                    <span class="text-gray-400 font-mono text-sm">SEK / month</span>
-                                </div>
-                                <span class="text-[11px] text-gray-400 font-mono">~€2,200 / month • Billed monthly • Cancel anytime</span>
-                            </div>
-
-                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
-                                    <span><strong>Unlimited</strong> webhook & error incident processing</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
-                                    <span>Dedicated isolated LLM API keys & quotas</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
-                                    <span>Dedicated static IP whitelist for firewalls</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
-                                    <span>Support for Sentry, Datadog, GitHub & GitLab</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-circle-check text-emeraldAccent"></i>
-                                    <span>Direct Slack/Teams channel support with founder</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <a href="mailto:gustav@goodstuffdev.se?subject=Good%20Stuff%20Dev%20Standard%20Subscription" class="w-full py-4 rounded-xl bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-extrabold text-center text-sm transition-all flex items-center justify-center gap-2">
-                            <span>Get Started Now</span>
-                            <i class="fa-solid fa-chevron-right text-xs"></i>
-                        </a>
-                    </div>
-
+                    <a href="mailto:gustav@goodstuffdev.se?subject=Good%20Stuff%20Dev%20Pilot%20Request" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-emeraldAccent hover:bg-emeraldHover text-slate-950 font-extrabold text-base transition-all duration-200 emerald-glow">
+                        <span>Book Pilot Onboarding</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
                 </div>
 
             </div>
         </section>
 
-        <!-- ================= SECURITY & FAQ ACCORDION ================= -->
+        <!-- SECURITY & FAQ ACCORDION -->
         <section id="faq" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="text-center mb-16">
                 <h2 class="text-xs font-mono font-bold tracking-widest text-emeraldAccent uppercase">Security & FAQ</h2>
@@ -721,7 +549,6 @@
 
             <div class="space-y-4">
                 
-                <!-- Item 1 -->
                 <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
                     <button onclick="toggleFaq('faq-1')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
                         <span>How does Good Stuff Dev access our codebase safely?</span>
@@ -732,18 +559,16 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
                     <button onclick="toggleFaq('faq-2')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
                         <span>Is our proprietary source code used to train AI models?</span>
                         <i id="icon-faq-2" class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
                     </button>
                     <div id="faq-2" class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed border-t border-borderSlate/50 pt-4">
-                        <strong>No, never.</strong> Good Stuff Dev operates strictly through Google Cloud Gemini Enterprise API endpoints under commercial enterprise terms. Under these agreements, input data and codebase context are never stored for model training or shared with third parties.
+                        <strong>No, never.</strong> Good Stuff Dev operates strictly through Google Cloud Gemini Enterprise API endpoints under commercial paid terms. Under Google's enterprise commercial data policy, prompts and responses are zero-retained for training and never used to improve underlying models.
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
                     <button onclick="toggleFaq('faq-3')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
                         <span>What happens if our Git server is behind a firewall?</span>
@@ -754,21 +579,20 @@
                     </div>
                 </div>
 
-                <!-- Item 4 -->
                 <div class="bg-cardBg border border-borderSlate rounded-xl overflow-hidden">
                     <button onclick="toggleFaq('faq-4')" class="w-full p-6 text-left flex justify-between items-center font-semibold text-white hover:text-emeraldAccent transition-colors">
-                        <span>How does the 14-day trial conversion work?</span>
+                        <span>How does the 14-day trial evaluation work?</span>
                         <i id="icon-faq-4" class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
                     </button>
                     <div id="faq-4" class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed border-t border-borderSlate/50 pt-4">
-                        Before starting, we agree on clear Success Criteria (e.g., automated reproduction of 2 live webhook failures). If the agent successfully meets these criteria within 14 days, the pilot automatically transitions to the standard 24,900 SEK/month subscription. If criteria are not met, you owe nothing.
+                        Before starting, we agree on clear Success Criteria (e.g., automated reproduction of 2 live webhook failures). At the end of 14 days, you review the verified PRs and decide if you want to activate a subscription.
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- ================= FOOTER ================= -->
+        <!-- FOOTER -->
         <footer class="mt-auto border-t border-borderSlate bg-darkBg py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 
@@ -791,7 +615,7 @@
 
     </div>
 
-    <!-- ================= DEMO VIDEO MODAL ================= -->
+    <!-- DEMO MODAL -->
     <div id="demo-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-cardBg border border-borderSlate rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative">
             
@@ -805,7 +629,6 @@
             </div>
 
             <div class="aspect-video bg-black flex items-center justify-center p-8 text-center relative">
-                <!-- Video Container / Placeholder -->
                 <div class="space-y-4">
                     <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mx-auto animate-pulse">
                         <i class="fa-solid fa-play ml-1"></i>
@@ -823,9 +646,8 @@
         </div>
     </div>
 
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- Workflow Switcher (Before vs After) ---
         function switchWorkflow(mode) {
             const afterWork = document.getElementById('workflow-after');
             const beforeWork = document.getElementById('workflow-before');
@@ -847,7 +669,6 @@
             }
         }
 
-        // --- ROI Calculator Logic ---
         const inputDevs = document.getElementById('input-devs');
         const inputHours = document.getElementById('input-hours');
         const inputRate = document.getElementById('input-rate');
@@ -858,7 +679,6 @@
 
         const resHours = document.getElementById('res-hours');
         const resMoney = document.getElementById('res-money');
-        const resRoi = document.getElementById('res-roi');
 
         function calculateROI() {
             const devs = parseInt(inputDevs.value);
@@ -871,26 +691,16 @@
 
             const totalHoursSaved = devs * hoursPerDev;
             const totalMoneySaved = totalHoursSaved * rate;
-            const netRoi = totalMoneySaved - 24900;
 
             resHours.innerText = `${totalHoursSaved} hrs`;
             resMoney.innerText = `${totalMoneySaved.toLocaleString()} SEK`;
-            
-            if (netRoi > 0) {
-                resRoi.innerText = `+${netRoi.toLocaleString()} SEK / mo`;
-                resRoi.className = "text-emerald-400 font-bold text-sm";
-            } else {
-                resRoi.innerText = `${netRoi.toLocaleString()} SEK / mo`;
-                resRoi.className = "text-yellow-400 font-bold text-sm";
-            }
         }
 
         inputDevs.addEventListener('input', calculateROI);
         inputHours.addEventListener('input', calculateROI);
         inputRate.addEventListener('input', calculateROI);
-        calculateROI(); // initial call
+        calculateROI();
 
-        // --- FAQ Accordion Logic ---
         function toggleFaq(id) {
             const content = document.getElementById(id);
             const icon = document.getElementById(`icon-${id}`);
@@ -904,14 +714,12 @@
             }
         }
 
-        // --- Mobile Menu Toggle ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
         document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
 
-        // --- Demo Modal Logic ---
         function openDemoModal() {
             document.getElementById('demo-modal').classList.remove('hidden');
         }
